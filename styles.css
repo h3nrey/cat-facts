@@ -82,7 +82,7 @@ main{
 #buttonWrapper:hover{
     background: linear-gradient(to right,var(--lighteenyellow), #CB8175);
 }
-button{
+#random-fact-button{
     width: 21.5rem;
     height: 5rem;
     background-color: var(--strongYellow);
@@ -94,11 +94,11 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+#random-fact-button:hover{
     box-shadow: 0px 0px 15px 1px #CB8175;
 }
 
-button:active {
+#random-fact-button:active {
     background: linear-gradient(to left, var(--lighteenyellow), var(--strongyellow));
 }
 
