@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Cacts</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="./assets/catIcon.svg" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -35,8 +36,57 @@
             
         </div>
     </div>
-    <script src="GetRandomFacts.js"></script>
+    <script>
+        var fatos;
+const contentDiv = document.querySelector(".content");
+factText = document.querySelector('#fact');
+const randomButtons = document.querySelector("#random-fact-button");
+randomButtons.addEventListener('click', () => {
+    
+    getContent();
+})
 
-    <script src="translation.js"></script>
+async function getContent() {
+    try {
+        const response = await fetch("https://catfact.ninja/fact");
+        const data = await response.json();
+        showFact(data.fact)
+        getTranslationApi(data.fact)
+    } catch(error) {
+        console.error(error);
+    }
+}
+    
+    getContent();
+    function showFact(fact) {
+        factText.innerHTML = fact;      
+    }
+    
+    //translation stuff
+    
+    const Translatorbtn = document.querySelector("#translatorButton");
+    Translatorbtn.addEventListener("click", () => {
+        contentDiv.classList.toggle("translated");
+        const spans = document.querySelectorAll("#translatorButton span");
+        for (const span of spans) {
+            span.classList.toggle("selected");
+        }
+    })
+
+async function getTranslationApi(textToTranslate) {
+        try {
+            const response = await fetch(`https://api.mymemory.translated.net/get?q=${textToTranslate}&langpair=en|pt`);
+            const  data  = await response.json();
+            const text = data.responseData.translatedText;
+            if(contentDiv.classList.contains("translated")) {
+                factText.innerHTML = text;
+            }
+          } catch(error) {
+            console.error(error);
+        } 
+  
+}
+    </script>
+    <!-- <script src="GetRandomFacts.js"></script> -->
 </body>
 </html>
