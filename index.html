@@ -25,35 +25,17 @@
             </main>
             <footer>
                 <div id="translateContainer">
-                    <button id="translatorButton"><span>EN</span> <span>PT</span></button>
+                    <button id="translatorButton">
+                        <span class="selected" id="en">EN</span>
+                        <span id="pt">PT</span></button>
+                        <div class="toggleSwitch"></div>
                 </div>
-                by: <a href="https://github.com/h3nrey" target="_blank" rel="noopener noreferrer">h3nrey</a>
+                <span>by: <a href="https://github.com/h3nrey" target="_blank" rel="noopener noreferrer">h3nrey</a></span>
             </footer>
             
         </div>
     </div>
-    <script>
-        const randomButtons = document.querySelector("#random-fact-button");
-        randomButtons.addEventListener('click', () => {
-            getContent()
-        })
-
-        async function getContent() {
-            try {
-                const response = await fetch("https://catfact.ninja/fact");
-                const data = await response.json();
-                showFact(data.fact)
-            } catch(error) {
-                console.error(error);
-            }
-        }
-
-        getContent();
-
-        function showFact(fact) {
-            document.querySelector('#fact').innerHTML = fact;
-        }
-    </script>
+    <script src="GetRandomFacts.js"></script>
 
     <script src="translation.js"></script>
 </body>
